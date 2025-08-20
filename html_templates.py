@@ -33,7 +33,7 @@ Lorem ipsum dolor sit amet, meow meow i love my website!!!!!
 css = """/* originally written by Devine Lu Linvega */
 
 * { margin:0;padding:0;text-decoration:none;box-sizing:border-box;color:#000 }
-html { background-image:url("../media/refs/sakura.jpg");background-position:center;background-size:cover;background-color:#d8d8d8;min-height:100vh }
+html { background-position:center;background-size:cover;background-color:#d8d8d8;min-height:100vh }
 body { background-color:#fff;outline:2px solid #000;font-family:sans-serif;font-size:16px;max-width:700px;margin:50px auto;overflow-x:hidden }
 body > *, body main > *, main figure > div > *, main p, main q, main cite, main pre { margin-bottom:20px }
 body .right { float:right;margin:0 0 0 10px }
