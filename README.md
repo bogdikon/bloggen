@@ -1,2 +1,2 @@
 # bloggen
-Blog pages generator for my website
+Blog pages backend for my website
