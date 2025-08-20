@@ -10,6 +10,8 @@ import random
 import json
 import os
 import time
+import json
+from datetime import datetime, timezone
 
 import html_templates
 
@@ -17,9 +19,20 @@ app = Flask(__name__)
 
 api = Api(app)
 
+def generatePostsData():
+    with open("posts.json") as f:
+        json_data = f.read()
+    _json = json.loads(json_data)
+    html_generated = ""
+    for i in range(len(_json)):
+        print(_json[i])
+        _timestamp = datetime.fromtimestamp(_json[i]['timestamp']).strftime('%Y-%m-%d %H:%M')
+        html_generated += html_templates.post_template.format(timestamp=_timestamp, title=_json[i]['title'], body=_json[i]['body'])
+    return html_generated
+
 class Blog(Resource):
     def get(self):
-        response = make_response(html_templates.test_page_template)
+        response = make_response(html_templates.test_page_template.format(posts=generatePostsData()))
         response.headers['Content-Type'] = 'text/html'
         return response
 

@@ -16,10 +16,10 @@ test_page_template = """
 </ul>
 </header>
 <main>
-<h1>Hello World!</h1>
-<p>
-Lorem ipsum dolor sit amet, meow meow i love my website!!!!!
-</p>
+<h1>Bogdikon's blog!</h1>
+Welcome to Bogdikon's mini blog. I will post something here when I'm in mood.
+<h1/>
+{posts}
 </main>
 <footer>
 <span>
@@ -103,3 +103,11 @@ footer div.right img { margin-left:10px }
 	main th, main td { border-style:dotted }
 	header, footer { border-color:#fff }
 }"""
+
+post_template = """
+<h2>{title}</h2>
+<article>
+{body}
+</article>
+<h6>- {timestamp}<h6>
+"""
