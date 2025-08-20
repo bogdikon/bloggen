@@ -19,6 +19,7 @@ test_page_template = """
 <h1>Bogdikon's blog!</h1>
 Welcome to Bogdikon's mini blog. I will post something here when I'm in mood.
 <h1/>
+<h3>Page {page}</h3>
 {posts}
 </main>
 <footer>
