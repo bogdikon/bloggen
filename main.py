@@ -19,9 +19,18 @@ api = Api(app)
 
 class Blog(Resource):
     def get(self):
-        return "Hello world!", 200
-    
+        response = make_response(html_templates.test_page_template)
+        response.headers['Content-Type'] = 'text/html'
+        return response
+
+class Css(Resource):
+    def get(self):
+        response = make_response(html_templates.css)
+        response.headers['Content-Type'] = 'text/css'
+        return response
+
 api.add_resource(Blog, '/blog')
+api.add_resource(Css, '/assets/css/blog.css')
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", debug=True)
