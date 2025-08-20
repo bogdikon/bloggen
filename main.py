@@ -1,17 +1,12 @@
 # blog pages backend for bogdikon.ru
 # Copyright Bogdikon, 2025
 
-# I'll remove unused imports later
-import requests
-from flask import Flask, redirect, make_response
-from flask_restful import Resource, Api, reqparse, request
+from flask import Flask, make_response
+from flask_restful import Resource, Api, request
 
-import random
 import json
-import os
-import time
 import json
-from datetime import datetime, timezone
+from datetime import datetime
 
 import html_templates
 
@@ -46,8 +41,6 @@ class Blog(Resource):
             page = 1
         if int(page) < 1:
             page = 1
-        
-
         response = make_response(html_templates.test_page_template.format(posts=generatePostsData(page), page=page))
         response.headers['Content-Type'] = 'text/html'
         return response
