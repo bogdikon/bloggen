@@ -159,7 +159,6 @@ full_post_template = """
 <h2>{title}</h2>
 {body}
 <br>
-<br>
 <h6>- {timestamp}<h6>
 </main>
 <footer>
