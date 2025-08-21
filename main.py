@@ -26,9 +26,9 @@ def generatePostsData(page, json_data):
     for i in range(len(_json)):
         _timestamp = datetime.fromtimestamp(_json[i]['timestamp']).strftime('%Y-%m-%d %H:%M')
         if _json[i]['large']:
-            html_generated += html_templates.large_post_template.format(timestamp=_timestamp, title=_json[i]['title'], body=_json[i]['body'], full_post_link="/post?id=" + str(_json[i]['id']))
+            html_generated += html_templates.large_post_template.format(timestamp=_timestamp + " UTC+4", title=_json[i]['title'], body=_json[i]['body'], full_post_link="/post?id=" + str(_json[i]['id']))
             continue
-        html_generated += html_templates.post_template.format(timestamp=_timestamp, title=_json[i]['title'], body=_json[i]['body'])
+        html_generated += html_templates.post_template.format(timestamp=_timestamp + " UTC+4", title=_json[i]['title'], body=_json[i]['body'])
     return html_generated
 
 class Blog(Resource):
@@ -71,9 +71,9 @@ class FindPost(Resource):
                     _json[i]['full_post']
                 except:
                     _timestamp = datetime.fromtimestamp(_json[i]['timestamp']).strftime('%Y-%m-%d %H:%M')
-                    return make_response(html_templates.full_post_template.format(timestamp=_timestamp, title=_json[i]['title'], body=_json[i]['body']))
+                    return make_response(html_templates.full_post_template.format(timestamp=_timestamp + " UTC+4", title=_json[i]['title'], body=_json[i]['body']))
                 _timestamp = datetime.fromtimestamp(_json[i]['timestamp']).strftime('%Y-%m-%d %H:%M')
-                response = make_response(html_templates.full_post_template.format(timestamp=_timestamp, title=_json[i]['title'], body=_json[i]['full_post']))
+                response = make_response(html_templates.full_post_template.format(timestamp=_timestamp + " UTC+4", title=_json[i]['title'], body=_json[i]['full_post']))
                 response.headers['Content-Type'] = 'text/html'
                 return response
         return make_response(html_templates.error_template.format(error_text="Cannot find post with id: " + str(post)))
@@ -89,4 +89,4 @@ api.add_resource(Css, '/assets/css/blog.css') # debug
 api.add_resource(FindPost, '/post') 
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", debug=True)
+    app.run(host="0.0.0.0", debug=False)

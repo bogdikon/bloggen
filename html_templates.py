@@ -5,6 +5,10 @@ main_page_template = """
 <html>
 <head>
 <link href="/assets/css/blog.css" rel="stylesheet" type="text/css">
+<meta property="og:title" content="Bogdikon - blog">
+<meta property="og:type" content="website">
+<meta property="og:description" content="Main page">
+<meta property="theme-color" content="#d8d8d8">
 <title>Bogdikon - blog</title>
 </head>
 <body>
@@ -134,6 +138,10 @@ full_post_template = """
 <html>
 <head>
 <link href="/assets/css/blog.css" rel="stylesheet" type="text/css">
+<meta property="og:title" content="Bogdikon - post">
+<meta property="og:type" content="website">
+<meta property="og:description" content="{title}">
+<meta property="theme-color" content="#d8d8d8">
 <title>Bogdikon - blog</title>
 </head>
 <body>
