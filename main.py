@@ -76,6 +76,8 @@ class FindPost(Resource):
                 response = make_response(html_templates.full_post_template.format(timestamp=_timestamp, title=_json[i]['title'], body=_json[i]['full_post']))
                 response.headers['Content-Type'] = 'text/html'
                 return response
+            else:
+                return make_response(html_templates.error_template.format(error_text="Cannot find post with id: " + str(post)))
 
 class Css(Resource):
     def get(self):
