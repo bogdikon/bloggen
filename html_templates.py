@@ -25,6 +25,9 @@ Welcome to Bogdikon's mini blog. I will post something here when I'm in mood.
 <footer>
 <span>
 <a href="about.html">Bogdikon</a>&#169; 2025
+<div class="right">
+{pages_links}
+</div>
 </span>
 </footer>
 </body>

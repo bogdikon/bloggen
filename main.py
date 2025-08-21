@@ -7,16 +7,14 @@ from flask_restful import Resource, Api, request
 import json
 import json
 from datetime import datetime
-
+from math import ceil
 import html_templates
 
 app = Flask(__name__)
 
 api = Api(app)
 
-def generatePostsData(page):
-    with open("posts.json") as f:
-        json_data = f.read()
+def generatePostsData(page, json_data):
     _json = json.loads(json_data)
     html_generated = ""
     startpost = (int(page) - 1) * 5
@@ -32,16 +30,23 @@ def generatePostsData(page):
 
 class Blog(Resource):
     def get(self):
+        with open("posts.json") as f:
+            json_data = f.read()
+        _json = json.loads(json_data) # i had to do this because im lazy to figure out other way
         page = request.args.get('page')
         if page == None:
             page = 1
         try:
             int(page)
-        except:
+        except: # if page is not a number
             page = 1
         if int(page) < 1:
             page = 1
-        response = make_response(html_templates.test_page_template.format(posts=generatePostsData(page), page=page))
+        page_count = ceil(len(_json) / 5)
+        pages_links = ""
+        for i in range(page_count):
+            pages_links += '<a href="/blog?page=' + str(i + 1) + '">' + str(i + 1) + '</a>'
+        response = make_response(html_templates.test_page_template.format(posts=generatePostsData(page, json_data), page=page, pages_links=pages_links))
         response.headers['Content-Type'] = 'text/html'
         return response
 
