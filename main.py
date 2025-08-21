@@ -25,6 +25,9 @@ def generatePostsData(page, json_data):
         _json = _json[startpost:] # if last page
     for i in range(len(_json)):
         _timestamp = datetime.fromtimestamp(_json[i]['timestamp']).strftime('%Y-%m-%d %H:%M')
+        if _json[i]['large']:
+            html_generated += html_templates.large_post_template.format(timestamp=_timestamp, title=_json[i]['title'], body=_json[i]['body'], full_post_link="/post?id=" + str(_json[i]['id']))
+            continue
         html_generated += html_templates.post_template.format(timestamp=_timestamp, title=_json[i]['title'], body=_json[i]['body'])
     return html_generated
 
@@ -46,9 +49,33 @@ class Blog(Resource):
         pages_links = ""
         for i in range(page_count):
             pages_links += '<a href="/blog?page=' + str(i + 1) + '">' + str(i + 1) + '</a>'
-        response = make_response(html_templates.test_page_template.format(posts=generatePostsData(page, json_data), page=page, pages_links=pages_links))
+        response = make_response(html_templates.main_page_template.format(posts=generatePostsData(page, json_data), page=page, pages_links=pages_links))
         response.headers['Content-Type'] = 'text/html'
         return response
+
+class FindPost(Resource):
+    def get(self):
+        post = request.args.get('id')
+        with open("posts.json") as f:
+            json_data = f.read()
+        _json = json.loads(json_data)
+        for i in range(len(_json)):
+            if post == None:
+                return make_response(html_templates.error_template.format(error_text="No post id provided"))
+            try:
+                int(post)
+            except:
+                return make_response(html_templates.error_template.format(error_text="Cannot find post with id: " + str(post)))
+            if _json[i]['id'] == int(post):
+                try:
+                    _json[i]['full_post']
+                except:
+                    _timestamp = datetime.fromtimestamp(_json[i]['timestamp']).strftime('%Y-%m-%d %H:%M')
+                    return make_response(html_templates.full_post_template.format(timestamp=_timestamp, title=_json[i]['title'], body=_json[i]['body']))
+                _timestamp = datetime.fromtimestamp(_json[i]['timestamp']).strftime('%Y-%m-%d %H:%M')
+                response = make_response(html_templates.full_post_template.format(timestamp=_timestamp, title=_json[i]['title'], body=_json[i]['full_post']))
+                response.headers['Content-Type'] = 'text/html'
+                return response
 
 class Css(Resource):
     def get(self):
@@ -57,7 +84,8 @@ class Css(Resource):
         return response
 
 api.add_resource(Blog, '/blog')
-api.add_resource(Css, '/assets/css/blog.css')
+api.add_resource(Css, '/assets/css/blog.css') # debug
+api.add_resource(FindPost, '/post') 
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", debug=True)

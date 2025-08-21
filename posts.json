@@ -1,32 +1,52 @@
 [
         {
+            "id": 0,
             "timestamp": 1755716580,
             "title": "First Post",
-            "body": "This is the first example post"
+            "body": "This is the first example post",
+            "large": false
         },
         {
+            "id": 1,
             "timestamp": 1755716580,
             "title": "Second Post",
-            "body": "This is the second example post"
+            "body": "This is the second example post",
+            "large": false
         },
         {
+            "id": 2,
             "timestamp": 1755716580,
             "title": "Third Post",
-            "body": "This is the third example post"
+            "body": "This is the third example post",
+            "large": false
         },
         {
+            "id": 3,
             "timestamp": 1755716580,
             "title": "Fourth Post",
-            "body": "This is the fourth example post"
+            "body": "This is the fourth example post",
+            "large": false
         },
         {
+            "id": 4,
             "timestamp": 1755716580,
             "title": "Fifth Post",
-            "body": "This is the fifth example post"
+            "body": "This is the fifth example post",
+            "large": false
         },
         {
+            "id": 5,
             "timestamp": 1755716580,
             "title": "Sixth Post",
-            "body": "This is the sixth example post"
+            "body": "This is the sixth example post",
+            "large": false
+        },
+        {
+            "id": 6,
+            "timestamp": 1755716580,
+            "title": "Test large post",
+            "body": "This post has the large key and it should have the \"See more\" button",
+            "full_post": "This post has the large key and it should have the \"See more\" button.<br><br>This post is a test post with large data and it doesnt fit on the blog page :P",
+            "large": true
         }
 ]

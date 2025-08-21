@@ -1,6 +1,6 @@
 # HTML Templates
 
-test_page_template = """
+main_page_template = """
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,6 +12,9 @@ test_page_template = """
 <ul>
 <li>
 <a href="index.html">home</a>
+</li>
+<li>
+<a href="blog">blog</a>
 </li>
 </ul>
 </header>
@@ -114,4 +117,78 @@ post_template = """
 {body}
 </article>
 <h6>- {timestamp}<h6>
+"""
+
+large_post_template = """
+<h2>{title}</h2>
+<article>
+{body}
+<br>
+<a href="{full_post_link}">See more...</a>
+</article>
+<h6>- {timestamp}<h6>
+"""
+
+full_post_template = """
+<!DOCTYPE html>
+<html>
+<head>
+<link href="/assets/css/blog.css" rel="stylesheet" type="text/css">
+<title>Bogdikon - blog</title>
+</head>
+<body>
+<header>
+<ul>
+<li>
+<a href="index.html">home</a>
+</li>
+<li>
+<a href="blog">blog</a>
+</li>
+</ul>
+</header>
+<main>
+<h2>{title}</h2>
+{body}
+<br>
+<br>
+<h6>- {timestamp}<h6>
+</main>
+<footer>
+<span>
+<a href="about.html">Bogdikon</a>&#169; 2025
+</span>
+</footer>
+</body>
+</html>
+"""
+
+error_template = """
+<!DOCTYPE html>
+<html>
+<head>
+<link href="/assets/css/blog.css" rel="stylesheet" type="text/css">
+<title>Bogdikon - blog</title>
+</head>
+<body>
+<header>
+<ul>
+<li>
+<a href="index.html">home</a>
+</li>
+<li>
+<a href="blog">blog</a>
+</li>
+</ul>
+</header>
+<main>
+<h3>{error_text}</h3>
+</main>
+<footer>
+<span>
+<a href="about.html">Bogdikon</a>&#169; 2025
+</span>
+</footer>
+</body>
+</html>
 """
