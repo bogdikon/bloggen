@@ -5,7 +5,6 @@ from flask import Flask, make_response
 from flask_restful import Resource, Api, request
 
 import json
-import json
 from datetime import datetime
 from math import ceil
 import html_templates
